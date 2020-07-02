@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<context:component-scan base-package="spring.di.ui"/>
+	<!-- <context:annotation-config/>어노테이션을 쓸때 추가해야줘야됨 -->	
+	<!-- Exam exam = new NewlecExam(); 형식을 아래처럼 표현해준다. -->
+	<!--  <bean id="exam1" class="spring.di.entity.NewlecExam" p:kor="10" p:eng="70"/>-->
+	
+	<!--
+		<property name="kor">
+			<value>10</value>
+		</property>
+		<property name="math" value="20"/>
+		<property name="eng" value="30"/>
+		<property name="com" value="40"/>
+		-->
+		<!--<constructor-arg name="kor" value="10" type="float"/>  type = 자료형-->
+		<!--  <constructor-arg name="kor" value="10"/>
+		<constructor-arg name="eng" value="20"/>
+		<constructor-arg name="math" value="30"/>
+		<constructor-arg name="com" value="40"/>
+		-->
+	<!-- ExamConsole console = new GridExamConsole(); 형식을 아래처럼 표현해준다. -->
+	
+		<!-- console.setExam(exam); 형식을 아래처럼 표현해준다. -->
+		<!--  <property name="exam" ref="exam"/>--> <!-- value 와 ref 엔 bean 의 id 가 들어간다-->
+	<!--  -->
+
+	
+</beans>

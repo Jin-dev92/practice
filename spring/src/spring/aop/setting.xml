@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<bean id="target" class="spring.aop.entity.NewlecExam" p:kor="1" p:eng="1" p:math="1" p:com="1"/>
+
+<!-- 	<bean id="classicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut"> -->
+<!-- 		<property name="mappedName" value="total"/> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"> -->
+<!-- 		<property name="advice" ref="logBeforeAdivce"/> -->
+<!-- 		<property name="pointcut" ref="classicPointCut"/> -->
+<!-- 	</bean> -->
+	<bean id="logAroundAdivce" class="spring.aop.advice.LogAroundAdivce"/> 
+	<bean id="logBeforeAdivce" class="spring.aop.advice.LogBeforeAdivce"/> 
+	<bean id="logAfterReturningAdivce" class="spring.aop.advice.LogAfterReturningAdivce"/> 
+	<bean id="logAfterThrowingAdivce" class="spring.aop.advice.LogAfterThrowingAdivce"/> 
+
+	<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logBeforeAdivce"/>
+		<property name="mappedNames">
+			<list>
+				<value>avg</value>
+				<value>total</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="classicAroundAdivce" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="advice" ref="logAroundAdivce"/>
+		<property name="mappedName" value="total"/>
+	</bean>
+	<bean id="proxy"  class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target"></property> <!-- 참조하는 bean의 아이디 -->
+		<property name="interceptorNames">
+			<list>
+				<value>logAroundAdivce</value>
+				<value>logBeforeAdivce</value>
+				<value>logAfterReturningAdivce</value>
+				<value>logAfterThrowingAdivce</value>
+			</list>
+		</property> <!-- 핸들러 -->
+	</bean>
+</beans>
