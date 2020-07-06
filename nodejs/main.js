@@ -1,6 +1,7 @@
 var http = require('http'); // 모듈 사용 선언
 var fs = require('fs');
 var url = require('url');
+
 var app = http.createServer(function(request,response){
     var _url = request.url;
     var querydata = url.parse(_url,true).query;
